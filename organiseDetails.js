@@ -311,7 +311,7 @@ console.table(getCommonTypePet());
 const getPeopleWhoHAveManyHobbies = () =>
   people.filter(({ hobbies }) => hobbies.length > 2).length;
 
-// console.log(getPeopleWhoHAveManyHobbies());
+console.log(getPeopleWhoHAveManyHobbies());
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
 //16. How many individuals share at least one hobby with Ramesh?
@@ -370,7 +370,7 @@ const READING = "reading";
 
 const isHobbyReading = (hobby) => hobby === READING;
 
-const isPersonReading = (person) =>
+const isPersonReader = (person) =>
   person.hobbies.some((hobby) => isHobbyReading(hobby.activity));
 
 const getBooksName = (books, hobby) => {
@@ -380,22 +380,22 @@ const getBooksName = (books, hobby) => {
   return books;
 };
 
-const getReaderAndBookNmae = (person) => {
+const getReaderAndBook = (person) => {
   const booksName = person.hobbies.reduce(getBooksName, []).flat();
 
   return { reader: person.name, bookName: booksName };
 };
 
-const getBooksNameAndPerson = () => {
+const getBooksNameAndReaders = () => {
   const readingPerson = people
-    .filter(isPersonReading)
+    .filter(isPersonReader)
     .flatMap(({ name, hobbies }) => ({ name, hobbies }));
 
   console.log(readingPerson);
-  return readingPerson.map(getReaderAndBookNmae);
+  return readingPerson.map(getReaderAndBook);
 };
 
-console.table(getBooksNameAndPerson());
+console.table(getBooksNameAndReaders());
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
 // 19. How many individuals live in cities starting with the letter "B"?
