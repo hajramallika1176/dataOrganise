@@ -177,7 +177,7 @@ console.table(getNameAndAddress());
 
 const getAllHobbies = () => {
   const listOfHobbies = people.flatMap((person) =>
-    person.hobbies.map((hobby) => hobby.activity)
+    person.hobbies.map(({ activity }) => activity)
   );
 
   return [listOfHobbies, listOfHobbies.length];
@@ -212,10 +212,10 @@ console.log(averageOfPeopleAge());
 const CS = "computer science";
 
 const getEducationDetails = () => {
-  const listOfCSPeople = people.filter((person) => person.studied.includes(CS));
+  const listOfCSPeople = people.filter(({ studied }) => studied.includes(CS));
   const totalPetOfThem = getTotalPets(listOfCSPeople);
 
-  return [listOfCSPeople.length, totalPetOfThem];
+  return  { CSStudents: listOfCSPeople.length, totalPets: totalPetOfThem };;
 };
 
 console.table(getEducationDetails());
@@ -224,9 +224,10 @@ console.table(getEducationDetails());
 // 10. How many individuals own more than one pet?
 
 const getPeopleHaveManyPets = () =>
-  people.filter((person) => person.petsDetails.length > 1).length;
+  people.filter(({petsDetails}) => petsDetails.length > 1).length;
 
 console.log(getPeopleHaveManyPets());
+
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
 // 11. Which pets are associated with specific favorite activities?
@@ -391,7 +392,6 @@ const getBooksNameAndReaders = () => {
     .filter(isPersonReader)
     .flatMap(({ name, hobbies }) => ({ name, hobbies }));
 
-  console.log(readingPerson);
   return readingPerson.map(getReaderAndBook);
 };
 
