@@ -328,16 +328,15 @@ const isHobbySame = function (rameshHobbies) {
 
 const getPeopleWhoHaveSameHobbyWithRamesh = () => {
   const rameshHobbies = people
-    .filter(({ name }) => name === RAMESH)
-    .flatMap((person) => person.hobbies.map((hobby) => hobby.activity));
+    .find(({ name }) => name === RAMESH)
+    .hobbies.map(({ activity }) => activity);
 
-  const peopleWithOutRamesh = people.filter((person) => person.name !== RAMESH);
+  const peopleWithOutRamesh = people.filter(({ name }) => name !== RAMESH);
 
   return peopleWithOutRamesh.filter(isHobbySame(rameshHobbies)).length;
 };
 
 console.log(getPeopleWhoHaveSameHobbyWithRamesh());
-
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
 // 17. Which pet is the youngest, and what is its name?
 
